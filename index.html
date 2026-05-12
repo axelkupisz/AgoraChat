@@ -10,9 +10,9 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
   --bg:#080806;--bd-nav:#141412;--bd-subtle:#1a1a18;--bd-mid:#1e1e1c;--bd-hover:#444444;
-  --tx-primary:#ccc8c0;--tx-secondary:#a0a09c;--tx-tertiary:#909090;
-  --tx-muted:#383634;--tx-dimmer:#282826;--tx-ghost:#1e1e1c;
-  --wm-nav:#3a3836;--logo-nav:#302e2c;--logo-hero:#c8c4bc;
+  --tx-primary:#ffffff;--tx-secondary:#d4d0c8;--tx-tertiary:#a0a09c;
+  --tx-muted:#b0aca8;--tx-dimmer:#909088;--tx-ghost:#787470;
+  --wm-nav:#c8c4c0;--logo-nav:#a0a09c;--logo-hero:#c8c4bc;
   --font-sans:-apple-system,'Inter',system-ui,sans-serif;
   --font-mono:'JetBrains Mono','SF Mono',ui-monospace,monospace;
   --br:8px;
@@ -40,19 +40,19 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 3
 .field-label{display:block;font-size:9px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--tx-dimmer);margin-bottom:8px}
 .field{width:100%;background:transparent;border:none;border-bottom:0.5px solid #1c1c1a;color:var(--tx-secondary);font-size:14px;font-family:var(--font-sans);padding:7px 0;outline:none;transition:border-color .2s}
 .field:focus{border-bottom-color:var(--bd-hover)}
-.field::placeholder{color:#181816}
+.field::placeholder{color:#686460}
 .field-code{font-family:var(--font-mono);letter-spacing:0.28em;font-size:15px;text-transform:uppercase}
 .btn-enter{width:100%;background:transparent;border:0.5px solid var(--bd-mid);color:var(--tx-tertiary);padding:12px;font-size:9px;letter-spacing:0.20em;text-transform:uppercase;border-radius:var(--br);cursor:pointer;font-family:var(--font-sans);transition:border-color .25s,color .25s;margin-top:8px;margin-bottom:18px}
 .btn-enter:hover{border-color:#555555;color:#e0dcd4}
-.link-secondary{color:#222220;font-size:10px;cursor:pointer;background:none;border:none;font-family:var(--font-sans);transition:color .2s}
-.link-secondary:hover{color:#555555}
+.link-secondary{color:#909088;font-size:10px;cursor:pointer;background:none;border:none;font-family:var(--font-sans);transition:color .2s}
+.link-secondary:hover{color:#c8c4bc}
 .err{font-size:10px;color:#664444;letter-spacing:0.1em;margin-top:8px;min-height:14px;text-align:center}
 
 /* FOOTER */
 footer{display:flex;align-items:center;justify-content:center;gap:32px;padding:16px 32px;background:var(--bg);border-top:0.5px solid var(--bd-nav);flex-shrink:0}
 .footer-item{display:flex;flex-direction:column;align-items:center;gap:3px}
 .footer-label{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-ghost)}
-.footer-val{font-size:10px;color:#1a1a18}
+.footer-val{font-size:10px;color:#909088}
 
 /* CHAT */
 #s-chat{background:var(--bg)}
@@ -71,7 +71,7 @@ footer{display:flex;align-items:center;justify-content:center;gap:32px;padding:1
 #msgs::-webkit-scrollbar{width:0}
 .chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:40px;pointer-events:none}
 .ce-label{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--tx-ghost)}
-.ce-sub{font-size:11px;color:#222220;line-height:1.7;letter-spacing:0.05em}
+.ce-sub{font-size:11px;color:#909088;line-height:1.7;letter-spacing:0.05em}
 .msg-row{display:flex;flex-direction:column;animation:fadein .2s ease}
 @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .msg-row.me{align-items:flex-end}.msg-row.them{align-items:flex-start}
@@ -84,7 +84,7 @@ footer{display:flex;align-items:center;justify-content:center;gap:32px;padding:1
 .chat-ftr{display:flex;align-items:flex-end;gap:10px;padding:14px 24px;background:var(--bg);border-top:0.5px solid var(--bd-nav);flex-shrink:0}
 #inp{flex:1;background:transparent;border:none;border-bottom:0.5px solid #1c1c1a;color:var(--tx-secondary);font-size:13px;font-family:var(--font-sans);padding:7px 0;outline:none;resize:none;max-height:100px;line-height:1.5;transition:border-color .2s}
 #inp:focus{border-bottom-color:var(--bd-hover)}
-#inp::placeholder{color:#181816}
+#inp::placeholder{color:#686460}
 #inp:disabled{opacity:.4}
 .btn-send{background:transparent;border:0.5px solid var(--bd-mid);color:var(--tx-tertiary);padding:8px 16px;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;border-radius:var(--br);cursor:pointer;font-family:var(--font-sans);transition:border-color .25s,color .25s;white-space:nowrap;flex-shrink:0}
 .btn-send:hover:not(:disabled){border-color:#555555;color:var(--tx-primary)}
