@@ -9,10 +9,10 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --bg:#080806;--bd-nav:#141412;--bd-subtle:#1a1a18;--bd-mid:#1e1e1c;--bd-hover:#444444;
+  --bg:#080806;--bd-nav:#141412;--bd-subtle:#2a2a28;--bd-mid:#323230;--bd-hover:#666660;
   --tx-primary:#ffffff;--tx-secondary:#d4d0c8;--tx-tertiary:#a0a09c;
   --tx-muted:#b0aca8;--tx-dimmer:#909088;--tx-ghost:#787470;
-  --wm-nav:#c8c4c0;--logo-nav:#a0a09c;--logo-hero:#c8c4bc;
+  --wm-nav:#c8c4c0;--logo-nav:#a0a09c;
   --font-sans:-apple-system,'Inter',system-ui,sans-serif;
   --font-mono:'JetBrains Mono','SF Mono',ui-monospace,monospace;
   --br:8px;
@@ -23,7 +23,7 @@ body{font-family:var(--font-sans);background:var(--bg);color:var(--tx-primary);d
 .scr.off{opacity:0;pointer-events:none}
 
 /* NAV */
-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;height:56px;background:var(--bg);border-bottom:0.5px solid var(--bd-nav);flex-shrink:0;position:relative;z-index:10}
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;height:56px;background:var(--bg);border-bottom:0.5px solid var(--bd-nav);flex-shrink:0;z-index:10}
 .nav-left{display:flex;align-items:center;gap:10px}
 .nav-wordmark{font-size:12px;font-weight:300;letter-spacing:0.25em;text-transform:uppercase;color:var(--wm-nav)}
 .btn-nav{background:transparent;border:0.5px solid var(--bd-subtle);color:var(--tx-muted);padding:7px 16px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;border-radius:var(--br);cursor:pointer;font-family:var(--font-sans);transition:border-color .25s,color .25s}
@@ -31,83 +31,119 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 3
 
 /* HERO */
 .hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;min-height:480px;position:relative;overflow:hidden}
-#ouroboros-hero{position:absolute;opacity:0;width:320px;height:320px}
+#ouroboros-hero{position:absolute;opacity:0;width:320px;height:320px;pointer-events:none}
 #agora-title{position:absolute;font-size:clamp(52px,9vw,80px);font-weight:200;letter-spacing:0.2em;text-transform:uppercase;color:var(--tx-primary);opacity:0;transform:scale(0.82);display:flex;pointer-events:none}
-#agora-title span{display:inline-block;transition:none}
+#agora-title span{display:inline-block}
 #form-container{opacity:0;display:flex;flex-direction:column;align-items:center;width:100%;max-width:260px;position:relative;z-index:2}
 .tagline{font-size:10px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--tx-muted);margin-bottom:32px;text-align:center;line-height:1.6}
 .field-group{margin-bottom:20px;width:100%}
 .field-label{display:block;font-size:9px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--tx-dimmer);margin-bottom:8px}
-.field{width:100%;background:transparent;border:none;border-bottom:0.5px solid #1c1c1a;color:var(--tx-secondary);font-size:14px;font-family:var(--font-sans);padding:7px 0;outline:none;transition:border-color .2s}
+.field{width:100%;background:transparent;border:none;border-bottom:0.5px solid var(--bd-subtle);color:var(--tx-secondary);font-size:14px;font-family:var(--font-sans);padding:7px 0;outline:none;transition:border-color .2s}
 .field:focus{border-bottom-color:var(--bd-hover)}
-.field::placeholder{color:#686460}
+.field::placeholder{color:var(--tx-ghost)}
 .field-code{font-family:var(--font-mono);letter-spacing:0.28em;font-size:15px;text-transform:uppercase}
 .btn-enter{width:100%;background:transparent;border:0.5px solid var(--bd-mid);color:var(--tx-tertiary);padding:12px;font-size:9px;letter-spacing:0.20em;text-transform:uppercase;border-radius:var(--br);cursor:pointer;font-family:var(--font-sans);transition:border-color .25s,color .25s;margin-top:8px;margin-bottom:18px}
-.btn-enter:hover{border-color:#555555;color:#e0dcd4}
-.link-secondary{color:#909088;font-size:10px;cursor:pointer;background:none;border:none;font-family:var(--font-sans);transition:color .2s}
-.link-secondary:hover{color:#c8c4bc}
-.err{font-size:10px;color:#664444;letter-spacing:0.1em;margin-top:8px;min-height:14px;text-align:center}
+.btn-enter:hover:not(:disabled){border-color:var(--bd-hover);color:var(--tx-primary)}
+.btn-enter:disabled{opacity:.35;cursor:not-allowed}
+.link-secondary{color:var(--tx-ghost);font-size:10px;cursor:pointer;background:none;border:none;font-family:var(--font-sans);transition:color .2s}
+.link-secondary:hover{color:var(--tx-tertiary)}
+.err{font-size:10px;color:#886060;letter-spacing:0.1em;margin-top:10px;min-height:14px;text-align:center;transition:opacity .2s}
 
 /* FOOTER */
 footer{display:flex;align-items:center;justify-content:center;gap:32px;padding:16px 32px;background:var(--bg);border-top:0.5px solid var(--bd-nav);flex-shrink:0}
 .footer-item{display:flex;flex-direction:column;align-items:center;gap:3px}
 .footer-label{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-ghost)}
-.footer-val{font-size:10px;color:#909088}
+.footer-val{font-size:10px;color:var(--tx-dimmer)}
+
+/* WAITING SCREEN */
+#s-waiting{align-items:center;justify-content:center;padding:32px;gap:20px;text-align:center}
+.wait-ring{width:48px;height:48px;border:0.5px solid var(--bd-subtle);border-top-color:var(--tx-ghost);border-radius:50%;animation:spin 2s linear infinite;margin:0 auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wait-title{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--tx-dimmer)}
+.wait-sub{font-size:12px;color:var(--tx-ghost);line-height:1.7}
+.wait-code{font-family:var(--font-mono);font-size:18px;letter-spacing:0.3em;color:var(--tx-secondary);margin:4px 0}
+.btn-cancel{margin-top:16px;background:transparent;border:0.5px solid var(--bd-subtle);color:var(--tx-ghost);padding:8px 20px;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;border-radius:var(--br);cursor:pointer;font-family:var(--font-sans);transition:border-color .2s,color .2s}
+.btn-cancel:hover{border-color:var(--bd-hover);color:var(--tx-tertiary)}
 
 /* CHAT */
 #s-chat{background:var(--bg)}
-.chat-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;height:56px;background:var(--bg);border-bottom:0.5px solid var(--bd-nav);flex-shrink:0}
-.chat-nav-left{display:flex;align-items:center;gap:10px}
-.chat-nav-room{font-family:var(--font-mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--tx-muted)}
-.chat-status{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--tx-dimmer);letter-spacing:0.1em}
-.sdot{width:5px;height:5px;border-radius:50%;background:#2a2a28;transition:background .4s,box-shadow .4s;flex-shrink:0}
-.sdot.on{background:#4a6a5a;box-shadow:0 0 6px rgba(74,106,90,.4)}
-.btn-close{background:transparent;border:0.5px solid #2a1818;color:#5a3030;padding:7px 14px;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;border-radius:var(--br);cursor:pointer;font-family:var(--font-sans);transition:border-color .25s,color .25s}
-.btn-close:hover{border-color:#664444;color:#c08080}
-.btn-leave{background:transparent;border:0.5px solid var(--bd-subtle);color:var(--tx-dimmer);padding:7px 14px;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;border-radius:var(--br);cursor:pointer;font-family:var(--font-sans);transition:border-color .25s,color .25s}
+.chat-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;height:56px;background:var(--bg);border-bottom:0.5px solid var(--bd-nav);flex-shrink:0;gap:10px}
+.chat-nav-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.chat-room-info{min-width:0}
+.chat-room-row{display:flex;align-items:center;gap:8px}
+.room-code{font-family:var(--font-mono);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--tx-secondary);cursor:pointer;transition:color .2s}
+.room-code:hover{color:var(--tx-primary)}
+.copy-hint{font-size:9px;color:var(--tx-ghost);letter-spacing:0.1em;margin-left:2px;opacity:0;transition:opacity .2s}
+.room-code:hover + .copy-hint{opacity:1}
+.members-badge{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-ghost);margin-top:2px;display:flex;align-items:center;gap:5px}
+.sdot{width:4px;height:4px;border-radius:50%;background:#404040;transition:background .4s;flex-shrink:0}
+.sdot.on{background:#5a8a6a}
+.chat-nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.btn-close{background:transparent;border:0.5px solid #2a1818;color:#7a4040;padding:7px 14px;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;border-radius:var(--br);cursor:pointer;font-family:var(--font-sans);transition:border-color .25s,color .25s}
+.btn-close:hover{border-color:#664444;color:#c09090}
+.btn-leave{background:transparent;border:0.5px solid var(--bd-subtle);color:var(--tx-ghost);padding:7px 14px;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;border-radius:var(--br);cursor:pointer;font-family:var(--font-sans);transition:border-color .25s,color .25s}
 .btn-leave:hover{border-color:var(--bd-hover);color:var(--tx-tertiary)}
 
-#msgs{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:4px;min-height:0}
-#msgs::-webkit-scrollbar{width:0}
-.chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:40px;pointer-events:none}
-.ce-label{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--tx-ghost)}
-.ce-sub{font-size:11px;color:#909088;line-height:1.7;letter-spacing:0.05em}
-.msg-row{display:flex;flex-direction:column;animation:fadein .2s ease}
-@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.msg-row.me{align-items:flex-end}.msg-row.them{align-items:flex-start}
-.msg-nick{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tx-ghost);margin-bottom:4px;padding:0 4px}
-.msg-bubble{max-width:72%;padding:9px 14px;font-size:13px;line-height:1.6;word-break:break-word;border:0.5px solid var(--bd-subtle);border-radius:var(--br);color:var(--tx-secondary);background:transparent}
-.msg-row.me .msg-bubble{color:var(--tx-primary);border-color:#2a2a28;background:#0e0e0c}
-.msg-time{font-size:9px;color:var(--tx-ghost);margin-top:3px;padding:0 4px;font-family:var(--font-mono);letter-spacing:0.05em}
-.sys-msg{text-align:center;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--tx-ghost);padding:8px}
+/* APPROVAL REQUESTS */
+#requests-panel{flex-shrink:0;border-bottom:0.5px solid var(--bd-nav);display:none}
+.req-item{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;gap:12px;border-bottom:0.5px solid var(--bd-nav);animation:fadein .2s ease}
+.req-item:last-child{border-bottom:none}
+.req-name{font-size:12px;color:var(--tx-secondary);flex:1}
+.req-label{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-ghost);margin-bottom:2px}
+.req-actions{display:flex;gap:6px}
+.btn-accept{background:transparent;border:0.5px solid #2a4a38;color:#6aaa80;padding:5px 12px;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;border-radius:var(--br);cursor:pointer;font-family:var(--font-sans);transition:border-color .2s,color .2s}
+.btn-accept:hover{border-color:#5a9a70;color:#9addb0}
+.btn-reject{background:transparent;border:0.5px solid #3a1a1a;color:#7a4040;padding:5px 12px;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;border-radius:var(--br);cursor:pointer;font-family:var(--font-sans);transition:border-color .2s,color .2s}
+.btn-reject:hover{border-color:#664444;color:#c08080}
 
-.chat-ftr{display:flex;align-items:flex-end;gap:10px;padding:14px 24px;background:var(--bg);border-top:0.5px solid var(--bd-nav);flex-shrink:0}
-#inp{flex:1;background:transparent;border:none;border-bottom:0.5px solid #1c1c1a;color:var(--tx-secondary);font-size:13px;font-family:var(--font-sans);padding:7px 0;outline:none;resize:none;max-height:100px;line-height:1.5;transition:border-color .2s}
+/* MSGS */
+#msgs{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:4px;min-height:0}
+#msgs::-webkit-scrollbar{width:0}
+.chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:40px;pointer-events:none}
+.ce-label{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--tx-ghost)}
+.ce-sub{font-size:11px;color:var(--tx-ghost);line-height:1.7;letter-spacing:0.05em;margin-top:4px}
+.msg-row{display:flex;flex-direction:column;animation:fadein .18s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.msg-row.me{align-items:flex-end}.msg-row.them{align-items:flex-start}
+.msg-nick{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-ghost);margin-bottom:4px;padding:0 4px}
+.msg-bubble{max-width:72%;padding:9px 14px;font-size:13px;line-height:1.6;word-break:break-word;border:0.5px solid var(--bd-subtle);border-radius:var(--br);color:var(--tx-secondary)}
+.msg-row.me .msg-bubble{color:var(--tx-primary);border-color:#303028;background:#0e0e0c}
+.msg-time{font-size:9px;color:var(--tx-ghost);margin-top:3px;padding:0 4px;font-family:var(--font-mono)}
+.sys-msg{text-align:center;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx-ghost);padding:10px;opacity:.7}
+
+/* CHAT FOOTER */
+.chat-ftr{display:flex;align-items:flex-end;gap:10px;padding:14px 20px;background:var(--bg);border-top:0.5px solid var(--bd-nav);flex-shrink:0}
+#inp{flex:1;background:transparent;border:none;border-bottom:0.5px solid var(--bd-subtle);color:var(--tx-secondary);font-size:13px;font-family:var(--font-sans);padding:7px 0;outline:none;resize:none;max-height:100px;line-height:1.5;transition:border-color .2s}
 #inp:focus{border-bottom-color:var(--bd-hover)}
-#inp::placeholder{color:#686460}
+#inp::placeholder{color:var(--tx-ghost)}
 #inp:disabled{opacity:.4}
 .btn-send{background:transparent;border:0.5px solid var(--bd-mid);color:var(--tx-tertiary);padding:8px 16px;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;border-radius:var(--br);cursor:pointer;font-family:var(--font-sans);transition:border-color .25s,color .25s;white-space:nowrap;flex-shrink:0}
-.btn-send:hover:not(:disabled){border-color:#555555;color:var(--tx-primary)}
+.btn-send:hover:not(:disabled){border-color:var(--bd-hover);color:var(--tx-primary)}
 .btn-send:disabled{opacity:.3;cursor:not-allowed}
 
+/* UNREAD DOT */
+.unread-dot{width:6px;height:6px;border-radius:50%;background:#8a6a4a;flex-shrink:0;display:none}
+.unread-dot.visible{display:block}
+
 /* SHEET */
-.sheet-overlay{position:fixed;inset:0;background:rgba(8,8,6,.9);z-index:100;display:flex;align-items:flex-end;justify-content:center;transition:opacity .25s}
+.sheet-overlay{position:fixed;inset:0;background:rgba(8,8,6,.88);z-index:100;display:flex;align-items:flex-end;justify-content:center;transition:opacity .25s}
 .sheet-overlay.off{opacity:0;pointer-events:none}
-.sheet{background:var(--bg);border-top:0.5px solid var(--bd-nav);padding:28px 32px 40px;width:100%;max-width:480px;animation:su .28s ease}
-@keyframes su{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
-.sheet-handle{width:32px;height:1px;background:var(--bd-nav);margin:0 auto 24px}
+.sheet{background:var(--bg);border-top:0.5px solid var(--bd-nav);padding:28px 32px 44px;width:100%;max-width:480px;animation:su .28s ease}
+@keyframes su{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+.sheet-handle{width:32px;height:1px;background:var(--bd-subtle);margin:0 auto 24px}
 .sheet-title{font-size:9px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--tx-dimmer);margin-bottom:16px}
 </style>
 </head>
 <body>
 
+<!-- ══ LANDING ══ -->
 <div class="scr" id="s-land">
   <nav>
     <div class="nav-left">
       <svg id="ouroboros-nav" width="18" height="18" viewBox="0 0 60 60"></svg>
       <span class="nav-wordmark">Agora</span>
     </div>
-    <button class="btn-nav" onclick="showNameSheet('host')">Create a room</button>
+    <button class="btn-nav" onclick="showNameSheet()">Create a room</button>
   </nav>
   <div class="hero">
     <svg id="ouroboros-hero" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg"></svg>
@@ -116,15 +152,15 @@ footer{display:flex;align-items:center;justify-content:center;gap:32px;padding:1
       <p class="tagline">speak freely.<br>leave nothing behind.</p>
       <div class="field-group">
         <label class="field-label">your name</label>
-        <input class="field" id="land-name" type="text" placeholder="——" maxlength="28" autocomplete="off">
+        <input class="field" id="land-name" type="text" placeholder="——" maxlength="28" autocomplete="off" oninput="checkLandForm()">
       </div>
       <div class="field-group">
         <label class="field-label">room code</label>
         <input class="field field-code" id="land-code" type="text" placeholder="· · · · · ·" maxlength="6" autocomplete="off" autocorrect="off" spellcheck="false"
-          oninput="this.value=this.value.toUpperCase().replace(/[^A-Z]/g,'')" onkeydown="if(event.key==='Enter')tryJoin()">
+          oninput="this.value=this.value.toUpperCase().replace(/[^A-Z]/g,'');checkLandForm()" onkeydown="if(event.key==='Enter')tryJoin()">
       </div>
-      <button class="btn-enter" onclick="tryJoin()">Enter the agora</button>
-      <button class="link-secondary" onclick="showNameSheet('host')">create a room instead →</button>
+      <button class="btn-enter" id="btn-enter-land" onclick="tryJoin()" disabled>Enter the agora</button>
+      <button class="link-secondary" onclick="showNameSheet()">create a room instead →</button>
       <div class="err" id="err-msg"></div>
     </div>
   </div>
@@ -135,102 +171,123 @@ footer{display:flex;align-items:center;justify-content:center;gap:32px;padding:1
   </footer>
 </div>
 
+<!-- ══ WAITING ══ -->
+<div class="scr off" id="s-waiting">
+  <nav>
+    <div class="nav-left">
+      <svg id="ouroboros-wait-nav" width="18" height="18" viewBox="0 0 60 60"></svg>
+      <span class="nav-wordmark">Agora</span>
+    </div>
+  </nav>
+  <div class="wait-ring"></div>
+  <div class="wait-title">Waiting for approval</div>
+  <div class="wait-code" id="wait-code-display"></div>
+  <div class="wait-sub">The host will let you in shortly.<br>Stay on this page.</div>
+  <button class="btn-cancel" onclick="cancelRequest()">Cancel</button>
+</div>
+
+<!-- ══ CHAT ══ -->
 <div class="scr off" id="s-chat">
   <div class="chat-nav">
     <div class="chat-nav-left">
       <svg id="ouroboros-chat-nav" width="16" height="16" viewBox="0 0 60 60"></svg>
-      <div>
-        <div class="chat-nav-room" id="chat-room-code"></div>
-        <div class="chat-status" style="margin-top:3px"><span class="sdot" id="sdot"></span><span id="chat-st">connecting</span></div>
+      <div class="chat-room-info">
+        <div class="chat-room-row">
+          <span class="room-code" id="chat-room-code" onclick="copyCode()" title="Copy code"></span>
+          <span class="copy-hint">copy</span>
+        </div>
+        <div class="members-badge">
+          <span class="sdot" id="sdot"></span>
+          <span id="chat-st">connecting</span>
+          <span id="member-count"></span>
+          <span class="unread-dot" id="unread-dot"></span>
+        </div>
       </div>
     </div>
-    <button class="btn-close" id="btn-close" onclick="closeRoom()" style="display:none">Close room</button>
-    <button class="btn-leave" id="btn-leave" onclick="leaveRoom()" style="display:none">Leave</button>
+    <div class="chat-nav-actions">
+      <button class="btn-close" id="btn-close-room" onclick="closeRoom()" style="display:none">Close room</button>
+      <button class="btn-leave" id="btn-leave-room" onclick="leaveRoom()" style="display:none">Leave</button>
+    </div>
   </div>
+
+  <!-- Approval requests (host only) -->
+  <div id="requests-panel"></div>
+
   <div id="msgs">
     <div class="chat-empty" id="chat-empty">
       <div class="ce-label">Encrypted channel</div>
-      <div class="ce-sub">messages are encrypted before leaving your device<br>no one else can read this</div>
+      <div class="ce-sub">Messages are encrypted before leaving your device.<br>No one outside this room can read them.</div>
     </div>
   </div>
+
   <div class="chat-ftr">
     <textarea id="inp" placeholder="write something" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)" disabled></textarea>
     <button class="btn-send" id="btn-send" onclick="sendMsg()" disabled>send</button>
   </div>
 </div>
 
+<!-- ══ NAME SHEET (create room) ══ -->
 <div class="sheet-overlay off" id="sheet-overlay">
   <div class="sheet">
     <div class="sheet-handle"></div>
     <div class="sheet-title">your name</div>
     <input class="field" id="sheet-name" type="text" placeholder="——" maxlength="28" autocomplete="off"
-      style="margin-bottom:20px" onkeydown="if(event.key==='Enter')confirmName()">
-    <button class="btn-enter" onclick="confirmName()" style="margin-bottom:0">Continue →</button>
+      style="margin-bottom:20px" onkeydown="if(event.key==='Enter')confirmCreate()">
+    <button class="btn-enter" onclick="confirmCreate()" style="margin-bottom:0">Create room →</button>
   </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
 <script>
-function renderOuroboros(svgEl,cx,cy,r,color,segments=90){
-  svgEl.innerHTML='';
+// ══ OUROBOROS ══
+function renderOuro(el,cx,cy,r,color,n=90){
+  el.innerHTML='';
   const lines=[];
-  for(let i=0;i<segments;i++){
-    const p=i/segments;
-    const sw=0.5+4.5*Math.sin(p*Math.PI*0.92+0.08);
-    const op=Math.max(0.04,Math.min(1,0.08+0.92*Math.sin(p*Math.PI*0.90+0.05)));
-    const a1=(i/segments)*Math.PI*2-Math.PI/2;
-    const a2=((i+1)/segments)*Math.PI*2-Math.PI/2;
-    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
-    line.setAttribute('x1',cx+r*Math.cos(a1));line.setAttribute('y1',cy+r*Math.sin(a1));
-    line.setAttribute('x2',cx+r*Math.cos(a2));line.setAttribute('y2',cy+r*Math.sin(a2));
-    line.setAttribute('stroke',color);line.setAttribute('stroke-width',sw);
-    line.setAttribute('stroke-linecap','round');line.setAttribute('opacity',0);
-    line.dataset.opacity=op;svgEl.appendChild(line);lines.push(line);
+  for(let i=0;i<n;i++){
+    const p=i/n;
+    const sw=0.5+4.5*Math.sin(p*Math.PI*.92+.08);
+    const op=Math.max(.04,Math.min(1,.08+.92*Math.sin(p*Math.PI*.9+.05)));
+    const a1=(i/n)*Math.PI*2-Math.PI/2, a2=((i+1)/n)*Math.PI*2-Math.PI/2;
+    const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',cx+r*Math.cos(a1));l.setAttribute('y1',cy+r*Math.sin(a1));
+    l.setAttribute('x2',cx+r*Math.cos(a2));l.setAttribute('y2',cy+r*Math.sin(a2));
+    l.setAttribute('stroke',color);l.setAttribute('stroke-width',sw);
+    l.setAttribute('stroke-linecap','round');l.setAttribute('opacity',0);
+    l.dataset.op=op;el.appendChild(l);lines.push(l);
   }
   return lines;
 }
+function staticOuro(id,cx,cy,r,color){const ls=renderOuro(document.getElementById(id),cx,cy,r,color);ls.forEach(l=>l.setAttribute('opacity',l.dataset.op));}
+staticOuro('ouroboros-nav',30,30,22,'#a0a09c');
+staticOuro('ouroboros-wait-nav',30,30,22,'#a0a09c');
+staticOuro('ouroboros-chat-nav',30,30,22,'#a0a09c');
 
-// Static nav
-const navLines=renderOuroboros(document.getElementById('ouroboros-nav'),30,30,22,'#302e2c');
-navLines.forEach(l=>l.setAttribute('opacity',l.dataset.opacity));
-const chatNavLines=renderOuroboros(document.getElementById('ouroboros-chat-nav'),30,30,22,'#302e2c');
-chatNavLines.forEach(l=>l.setAttribute('opacity',l.dataset.opacity));
-
-// Hero animation
+// ══ LANDING ANIMATION ══
 const heroSvg=document.getElementById('ouroboros-hero');
 const agoraEl=document.getElementById('agora-title');
 const formEl=document.getElementById('form-container');
-const heroLines=renderOuroboros(heroSvg,160,160,148,'#c8c4bc');
-
+const heroLines=renderOuro(heroSvg,160,160,148,'#c8c4bc');
 function runIntro(){
   heroSvg.style.opacity='1';
-  heroLines.forEach((line,i)=>{
-    setTimeout(()=>{line.style.transition='opacity 0.08s ease';line.setAttribute('opacity',line.dataset.opacity);},i*16);
-  });
+  heroLines.forEach((l,i)=>setTimeout(()=>{l.style.transition='opacity .08s ease';l.setAttribute('opacity',l.dataset.op);},i*16));
   setTimeout(()=>{
-    agoraEl.style.transition='transform 2.2s cubic-bezier(0.25,0.46,0.45,0.94),opacity 2s ease-out';
+    agoraEl.style.transition='transform 2.2s cubic-bezier(.25,.46,.45,.94),opacity 2s ease-out';
     agoraEl.style.opacity='1';agoraEl.style.transform='scale(1)';
     heroSvg.style.transition='opacity 1.4s ease';heroSvg.style.opacity='0';
   },1600);
-  const drifts=[{dx:'-50px',dy:'-56px'},{dx:'-22px',dy:'-68px'},{dx:'0px',dy:'-72px'},{dx:'22px',dy:'-68px'},{dx:'50px',dy:'-56px'}];
-  const letters=agoraEl.querySelectorAll('span');
+  const drifts=[{x:'-50px',y:'-56px'},{x:'-22px',y:'-68px'},{x:'0px',y:'-72px'},{x:'22px',y:'-68px'},{x:'50px',y:'-56px'}];
   setTimeout(()=>{
-    letters.forEach((span,i)=>{
-      setTimeout(()=>{
-        span.style.transition='opacity 1.5s ease,transform 1.6s ease,filter 1.5s ease';
-        span.style.opacity='0';span.style.filter='blur(18px)';
-        span.style.transform=`translate(${drifts[i].dx},${drifts[i].dy})`;
-      },i*90);
-    });
+    agoraEl.querySelectorAll('span').forEach((s,i)=>setTimeout(()=>{
+      s.style.transition='opacity 1.5s ease,transform 1.6s ease,filter 1.5s ease';
+      s.style.opacity='0';s.style.filter='blur(18px)';
+      s.style.transform=`translate(${drifts[i].x},${drifts[i].y})`;
+    },i*90));
   },3800);
-  setTimeout(()=>{
-    formEl.style.transition='opacity 1.2s ease';formEl.style.opacity='1';
-    document.getElementById('land-name').focus();
-  },5200);
+  setTimeout(()=>{formEl.style.transition='opacity 1.2s ease';formEl.style.opacity='1';},5200);
 }
 window.addEventListener('load',()=>setTimeout(runIntro,200));
 
-// CRYPTO
+// ══ CRYPTO ══
 async function deriveKey(code){
   const raw=await crypto.subtle.importKey('raw',new TextEncoder().encode(code),'PBKDF2',false,['deriveKey']);
   return crypto.subtle.deriveKey({name:'PBKDF2',salt:new TextEncoder().encode('agora-v1'),iterations:120000,hash:'SHA-256'},raw,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);
@@ -242,139 +299,324 @@ async function enc(key,txt){
   return btoa(String.fromCharCode(...out));
 }
 async function dec(key,b64){
-  try{const b=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b.slice(0,12)},key,b.slice(12));return new TextDecoder().decode(pt);}catch{return null;}
+  try{const b=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b.slice(0,12)},key,b.slice(12));return new TextDecoder().decode(pt);}
+  catch{return null;}
 }
 function rnd(n=8){return Array.from(crypto.getRandomValues(new Uint8Array(n))).map(b=>b.toString(16).padStart(2,'0')).join('');}
 function genCode(){const c='BCDFGHJKLMNPQRSTVWXZ',v='AEIOU';let s='';for(let i=0;i<6;i++)s+=(i%2===0?c:v)[Math.floor(Math.random()*(i%2===0?c:v).length)];return s;}
 
-// STATE
-let myName='',myId=rnd(4),mode='',pendingMode='';
-let roomCode='',aesKey=null,mqtt=null,connected=false;
-const seen=new Set();
-const roomTopic=c=>'agora/room/'+c;
-const ctrlTopic=c=>'agora/ctrl/'+c;
+// ══ STATE ══
+// Persistent user ID (stays across sessions)
+let myId=localStorage.getItem('agora_uid')||rnd(8);
+localStorage.setItem('agora_uid',myId);
 
-// SHEET
-function showNameSheet(m){
-  pendingMode=m;
+let myName='',mode='',roomCode='',aesKey=null;
+let mqtt=null,connected=false;
+let members=new Map(); // id -> nick
+let pendingRequests=new Map(); // id -> nick
+const seen=new Set();
+let windowFocused=true;
+let atBottom=true;
+
+const roomTopic=c=>'agora3/room/'+c;
+const ctrlTopic=c=>'agora3/ctrl/'+c;
+
+window.addEventListener('focus',()=>{windowFocused=true;clearUnread();});
+window.addEventListener('blur',()=>{windowFocused=false;});
+
+// ══ FORM VALIDATION ══
+function checkLandForm(){
+  const n=document.getElementById('land-name').value.trim();
+  const c=document.getElementById('land-code').value.trim();
+  document.getElementById('btn-enter-land').disabled=!(n&&c.length===6);
+}
+document.getElementById('land-name').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('land-code').focus();});
+
+// ══ BANNED CHECK ══
+function isBanned(code){return localStorage.getItem('agora_ban_'+code)==='1';}
+function setBanned(code){localStorage.setItem('agora_ban_'+code,'1');}
+
+// ══ NAME SHEET ══
+function showNameSheet(){
   document.getElementById('sheet-name').value=myName||'';
   document.getElementById('sheet-overlay').classList.remove('off');
   setTimeout(()=>document.getElementById('sheet-name').focus(),120);
 }
-async function confirmName(){
+async function confirmCreate(){
   const n=document.getElementById('sheet-name').value.trim();
-  if(!n){document.getElementById('sheet-name').style.borderBottomColor='#664444';setTimeout(()=>document.getElementById('sheet-name').style.borderBottomColor='',800);return;}
-  myName=n;document.getElementById('sheet-overlay').classList.add('off');
-  if(pendingMode==='host')await createRoom();
+  if(!n){flash(document.getElementById('sheet-name'));return;}
+  myName=n;
+  document.getElementById('sheet-overlay').classList.add('off');
+  await createRoom();
 }
+function flash(el){el.style.borderBottomColor='#884040';setTimeout(()=>el.style.borderBottomColor='',800);}
 
-// JOIN from landing
+// ══ LAND JOIN ══
 async function tryJoin(){
   const n=document.getElementById('land-name').value.trim();
   const c=document.getElementById('land-code').value.trim().toUpperCase();
   setErr('');
-  if(!n){document.getElementById('land-name').style.borderBottomColor='#664444';setTimeout(()=>document.getElementById('land-name').style.borderBottomColor='',800);return;}
-  if(c.length!==6){setErr('six letters');return;}
-  myName=n;await joinRoom(c);
+  if(!n||c.length!==6)return;
+  if(isBanned(c)){setErr('access denied');return;}
+  myName=n;
+  await requestJoin(c);
 }
 
-// CREATE
+// ══ CREATE ROOM ══
 async function createRoom(){
-  roomCode=genCode();mode='host';aesKey=await deriveKey(roomCode);
-  openChatScreen();
-  document.getElementById('btn-close').style.display='block';
-  document.getElementById('btn-leave').style.display='none';
+  roomCode=genCode();mode='host';
+  aesKey=await deriveKey(roomCode);
+  members.set(myId,myName);
   connectMQTT(()=>{
-    mqtt.subscribe(roomTopic(roomCode));mqtt.subscribe(ctrlTopic(roomCode));
-    setStatus(true,roomCode.toLowerCase());enableInput(true);
-    addSys('room open · code: '+roomCode);
-    addSys('share the code — only those who have it can enter');
+    mqtt.subscribe(roomTopic(roomCode));
+    mqtt.subscribe(ctrlTopic(roomCode));
+    openChat(true);
+    setStatus(true,roomCode.toLowerCase());
+    updateMembers();
+    enableInput(true);
+    addSys('room open · share the code: '+roomCode);
   });
 }
 
-// JOIN
-async function joinRoom(code){
-  roomCode=code;mode='guest';aesKey=await deriveKey(code);
-  openChatScreen();
-  document.getElementById('btn-close').style.display='none';
-  document.getElementById('btn-leave').style.display='block';
+// ══ REQUEST JOIN (GUEST) ══
+async function requestJoin(code){
+  roomCode=code;mode='guest';
+  aesKey=await deriveKey(code);
+  document.getElementById('wait-code-display').textContent=code;
+  showScr('s-waiting');
   connectMQTT(()=>{
-    mqtt.subscribe(roomTopic(roomCode));mqtt.subscribe(ctrlTopic(roomCode));
-    setStatus(true,roomCode.toLowerCase());enableInput(true);
-    pubCtrl({type:'join',nick:myName,id:myId});
-    addSys('entered the agora · '+roomCode.toLowerCase());
+    mqtt.subscribe(ctrlTopic(roomCode));
+    pubCtrl({type:'request',nick:myName,id:myId});
   });
 }
 
-// MQTT
+function cancelRequest(){
+  if(connected&&roomCode)try{mqtt.unsubscribe(ctrlTopic(roomCode));}catch{}
+  roomCode='';aesKey=null;mode='';
+  showScr('s-land');
+}
+
+// ══ MQTT ══
 function connectMQTT(onReady){
   const cid='agora_'+rnd(8);
   mqtt=new Paho.MQTT.Client('broker.hivemq.com',8884,'/mqtt',cid);
-  mqtt.onConnectionLost=()=>{connected=false;setStatus(false,'reconnecting');enableInput(false);setTimeout(()=>connectMQTT(onReady),3500);};
+  mqtt.onConnectionLost=()=>{
+    connected=false;setStatus(false,'reconnecting');enableInput(false);
+    setTimeout(()=>connectMQTT(onReady),3500);
+  };
   mqtt.onMessageArrived=onMsg;
   mqtt.connect({useSSL:true,timeout:12,keepAliveInterval:25,
     onSuccess:()=>{connected=true;onReady&&onReady();},
     onFailure:()=>setTimeout(()=>connectMQTT(onReady),4000)});
 }
+
 async function onMsg(m){
   try{
     const d=JSON.parse(m.payloadString);
+
+    // ── CTRL ──
     if(m.destinationName===ctrlTopic(roomCode)){
-      if(d.type==='join'&&d.id!==myId){addSys((d.nick||'someone')+' entered');if(mode==='host')pubCtrl({type:'host_ack',nick:myName,id:myId});}
-      if(d.type==='leave'&&d.id!==myId)addSys((d.nick||'someone')+' left');
-      if(d.type==='room_closed'&&mode==='guest'){addSys('the host closed the room — all messages are gone');enableInput(false);setTimeout(()=>cleanAndHome(),2200);}
+
+      // Guest requests to join (host sees this)
+      if(d.type==='request'&&mode==='host'&&d.id!==myId){
+        pendingRequests.set(d.id,d.nick||'unknown');
+        renderRequests();
+        return;
+      }
+      // Host approved this guest
+      if(d.type==='approved'&&d.targetId===myId&&mode==='guest'){
+        mqtt.subscribe(roomTopic(roomCode));
+        openChat(false);
+        setStatus(true,roomCode.toLowerCase());
+        updateMembers();
+        enableInput(true);
+        pubCtrl({type:'joined',nick:myName,id:myId});
+        addSys('you entered the agora');
+        return;
+      }
+      // Host rejected this guest
+      if(d.type==='rejected'&&d.targetId===myId&&mode==='guest'){
+        setBanned(roomCode);
+        try{mqtt.unsubscribe(ctrlTopic(roomCode));}catch{}
+        roomCode='';aesKey=null;mode='';
+        showScr('s-land');
+        setErr('access denied');
+        return;
+      }
+      // Someone joined the room
+      if(d.type==='joined'&&d.id!==myId){
+        members.set(d.id,d.nick||'?');
+        updateMembers();
+        addSys((d.nick||'someone')+' entered');
+        return;
+      }
+      // Someone left
+      if(d.type==='left'&&d.id!==myId){
+        const nick=members.get(d.id)||d.nick||'someone';
+        members.delete(d.id);
+        updateMembers();
+        addSys(nick+' left');
+        return;
+      }
+      // Room closed by host
+      if(d.type==='room_closed'&&mode==='guest'){
+        try{mqtt.unsubscribe(roomTopic(roomCode));mqtt.unsubscribe(ctrlTopic(roomCode));}catch{}
+        roomCode='';aesKey=null;mode='';members.clear();seen.clear();
+        showScr('s-land');
+        setErr('the host closed the room');
+        return;
+      }
       return;
     }
-    if(d.enc&&d.id&&!seen.has(d.id)){seen.add(d.id);const txt=await dec(aesKey,d.enc);if(txt!==null)addBubble(txt,d.nick||'?',d.ts||Date.now(),d.cid===myId);}
+
+    // ── CHAT MESSAGES ──
+    if(m.destinationName===roomTopic(roomCode)){
+      if(d.enc&&d.id&&!seen.has(d.id)){
+        seen.add(d.id);
+        const txt=await dec(aesKey,d.enc);
+        if(txt!==null){
+          addBubble(txt,d.nick||'?',d.ts||Date.now(),d.sid===myId);
+          if(!windowFocused||!atBottom)showUnread();
+        }
+      }
+    }
   }catch{}
 }
-function pubCtrl(obj){if(!connected)return;const m=new Paho.MQTT.Message(JSON.stringify(obj));m.destinationName=ctrlTopic(roomCode);mqtt.send(m);}
 
-// SEND
+function pubCtrl(obj){
+  if(!connected)return;
+  const m=new Paho.MQTT.Message(JSON.stringify(obj));
+  m.destinationName=ctrlTopic(roomCode);mqtt.send(m);
+}
+
+// ══ HOST APPROVAL ══
+function renderRequests(){
+  const panel=document.getElementById('requests-panel');
+  if(pendingRequests.size===0){panel.style.display='none';panel.innerHTML='';return;}
+  panel.style.display='block';
+  panel.innerHTML='';
+  pendingRequests.forEach((nick,id)=>{
+    const div=document.createElement('div');
+    div.className='req-item';
+    div.innerHTML=`
+      <div><div class="req-label">wants to join</div><div class="req-name">${esc(nick)}</div></div>
+      <div class="req-actions">
+        <button class="btn-accept" onclick="approveGuest('${id}','${esc(nick)}')">Accept</button>
+        <button class="btn-reject" onclick="rejectGuest('${id}')">Reject</button>
+      </div>`;
+    panel.appendChild(div);
+  });
+}
+
+function approveGuest(id,nick){
+  pendingRequests.delete(id);
+  renderRequests();
+  members.set(id,nick);
+  updateMembers();
+  pubCtrl({type:'approved',targetId:id});
+}
+function rejectGuest(id){
+  pendingRequests.delete(id);
+  renderRequests();
+  pubCtrl({type:'rejected',targetId:id});
+}
+
+// ══ SEND ══
 async function sendMsg(){
   if(!connected||!aesKey)return;
-  const inp=document.getElementById('inp');const txt=inp.value.trim();if(!txt)return;
+  const inp=document.getElementById('inp');
+  const txt=inp.value.trim();if(!txt)return;
   inp.value='';inp.style.height='';
   const id=rnd()+'_'+Date.now();seen.add(id);
   const e=await enc(aesKey,txt);
-  const m=new Paho.MQTT.Message(JSON.stringify({enc:e,nick:myName,ts:Date.now(),id,cid:myId}));
+  const pl=JSON.stringify({enc:e,nick:myName,ts:Date.now(),id,sid:myId});
+  const m=new Paho.MQTT.Message(pl);
   m.destinationName=roomTopic(roomCode);mqtt.send(m);
-  addBubble(txt,myName,Date.now(),true);inp.focus();
+  addBubble(txt,myName,Date.now(),true);
+  inp.focus();
 }
 
-// CLOSE / LEAVE
-function closeRoom(){pubCtrl({type:'room_closed'});setTimeout(()=>cleanAndHome(),400);}
-function leaveRoom(){pubCtrl({type:'leave',nick:myName,id:myId});cleanAndHome();}
-function cleanAndHome(){
+// ══ CLOSE / LEAVE ══
+function closeRoom(){
+  pubCtrl({type:'room_closed'});
+  setTimeout(()=>{
+    try{mqtt.unsubscribe(roomTopic(roomCode));mqtt.unsubscribe(ctrlTopic(roomCode));}catch{}
+    cleanUp();showScr('s-land');
+  },300);
+}
+function leaveRoom(){
+  pubCtrl({type:'left',nick:myName,id:myId});
   try{mqtt.unsubscribe(roomTopic(roomCode));mqtt.unsubscribe(ctrlTopic(roomCode));}catch{}
-  aesKey=null;roomCode='';mode='';seen.clear();
-  document.getElementById('msgs').innerHTML='<div class="chat-empty" id="chat-empty"><div class="ce-label">Encrypted channel</div><div class="ce-sub">messages are encrypted before leaving your device<br>no one else can read this</div></div>';
-  document.getElementById('land-code').value='';setErr('');showScr('s-land');
+  cleanUp();showScr('s-land');
+}
+function cleanUp(){
+  aesKey=null;roomCode='';mode='';members.clear();pendingRequests.clear();seen.clear();
+  document.getElementById('msgs').innerHTML='<div class="chat-empty" id="chat-empty"><div class="ce-label">Encrypted channel</div><div class="ce-sub">Messages are encrypted before leaving your device.<br>No one outside this room can read them.</div></div>';
+  document.getElementById('requests-panel').innerHTML='';
+  document.getElementById('requests-panel').style.display='none';
+  document.getElementById('land-code').value='';
+  document.getElementById('btn-enter-land').disabled=true;
+  clearUnread();setErr('');
 }
 
-// UI
-function openChatScreen(){document.getElementById('chat-room-code').textContent='';enableInput(false);setStatus(false,'connecting');showScr('s-chat');}
+// ══ UI ══
+function openChat(isHost){
+  showScr('s-chat');
+  document.getElementById('btn-close-room').style.display=isHost?'block':'none';
+  document.getElementById('btn-leave-room').style.display=isHost?'none':'block';
+  document.getElementById('chat-room-code').textContent=roomCode;
+}
 function showScr(id){document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('off',s.id!==id));}
-function setStatus(on,txt){document.getElementById('sdot').className='sdot'+(on?' on':'');document.getElementById('chat-st').textContent=txt;if(on&&roomCode)document.getElementById('chat-room-code').textContent=roomCode;}
-function enableInput(on){document.getElementById('inp').disabled=!on;document.getElementById('btn-send').disabled=!on;if(on)document.getElementById('inp').focus();}
+function setStatus(on,txt){
+  document.getElementById('sdot').className='sdot'+(on?' on':'');
+  document.getElementById('chat-st').textContent=txt;
+}
+function updateMembers(){
+  const n=members.size;
+  document.getElementById('member-count').textContent=n>0?'· '+n+' in room':'';
+}
+function enableInput(on){
+  document.getElementById('inp').disabled=!on;
+  document.getElementById('btn-send').disabled=!on;
+  if(on)document.getElementById('inp').focus();
+}
 function addBubble(txt,nick,ts,isMe){
   const empty=document.getElementById('chat-empty');if(empty)empty.remove();
-  const msgs=document.getElementById('msgs');const row=document.createElement('div');
+  const msgs=document.getElementById('msgs');
+  const wasAtBottom=msgs.scrollHeight-msgs.scrollTop-msgs.clientHeight<40;
+  const row=document.createElement('div');
   row.className='msg-row '+(isMe?'me':'them');
   const t=new Date(ts).toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit',hour12:false});
   row.innerHTML=`${!isMe?`<div class="msg-nick">${esc(nick)}</div>`:''}<div class="msg-bubble">${esc(txt)}</div><div class="msg-time">${t}</div>`;
-  msgs.appendChild(row);msgs.scrollTop=msgs.scrollHeight;
+  msgs.appendChild(row);
+  if(wasAtBottom||isMe)msgs.scrollTop=msgs.scrollHeight;
 }
 function addSys(txt){
   const empty=document.getElementById('chat-empty');if(empty)empty.remove();
   const d=document.createElement('div');d.className='sys-msg';d.textContent='— '+txt+' —';
-  document.getElementById('msgs').appendChild(d);document.getElementById('msgs').scrollTop=9999;
+  document.getElementById('msgs').appendChild(d);
+  document.getElementById('msgs').scrollTop=9999;
+}
+function showUnread(){document.getElementById('unread-dot').classList.add('visible');document.title='● Agora';}
+function clearUnread(){document.getElementById('unread-dot').classList.remove('visible');document.title='Agora';}
+
+// Track scroll position
+document.getElementById('msgs').addEventListener('scroll',function(){
+  atBottom=this.scrollHeight-this.scrollTop-this.clientHeight<40;
+  if(atBottom)clearUnread();
+});
+
+function copyCode(){
+  navigator.clipboard.writeText(roomCode).then(()=>{
+    const el=document.getElementById('chat-room-code');
+    const orig=el.textContent;el.textContent='copied';
+    setTimeout(()=>el.textContent=orig,1200);
+  });
 }
 function setErr(msg){document.getElementById('err-msg').textContent=msg;}
 function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}}
 function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,100)+'px';}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');}
-document.getElementById('land-name').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('land-code').focus();});
 </script>
 </body>
 </html>
